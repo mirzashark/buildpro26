@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildPro26 — Waterproofing & Construction Experts</title>
+    <meta name="description" content="BuildPro26 offers expert waterproofing, heatproofing, roof leakage repair, bathroom seepage, epoxy flooring, construction & renovation services across Pakistan.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading:['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0A2540',
+                        corporate: '#0057B3',
+                        cyan: '#00D2D3',
+                        offwhite: '#F8F9FA',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        /* Glass Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Spotlight Cursor */
+        #cursor-spotlight {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 210, 211, 0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Hover Card Effect */
+        .hover-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+        }
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 210, 211, 0.15);
+            border-color: rgba(0, 210, 211, 0.5);
+        }
+
+        /* Marquee */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            white-space: nowrap;
+        }
+        .marquee-track {
+            display: flex;
+            animation: marquee 40s linear infinite;
+        }
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .client-logo {
+            filter: grayscale(100%) opacity(0.6);
+            transition: all 0.3s ease;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        /* Parallax Image Wrapper */
+        .parallax-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        .parallax-img {
+            height: 120%;
+            width: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: -10%;
+        }
+
+        /* Before/After Slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: ew-resize;
+        }
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .slider-img-before {
+            clip-path: inset(0 50% 0 0);
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: #00D2D3;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .slider-handle::after {
+            content: '< >';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #0A2540;
+            color: white;
+            border: 2px solid #00D2D3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* SVG Liquid Backgrounds */
+        .bg-liquid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        /* Swiper Pagination Customization */
+        .swiper-pagination-bullet-active {
+            background-color: #00D2D3 !important;
+        }
+        
+        /* Smooth reveal class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Accordion transition */
+        .faq-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .faq-content.open {
+            max-height: 500px; /* arbitrary large value */
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased font-sans">
+
+    <!-- Mouse Spotlight -->
+    <div id="cursor-spotlight"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 glass-nav py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <img src="logo.png" class="h-[70px] w-auto block">
+            </a>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-6 font-medium text-sm lg:text-base">
+                <a href="#about" class="text-navy hover:text-cyan transition">About Us</a>
+                <a href="#services" class="text-navy hover:text-cyan transition">Services</a>
+                <a href="#process" class="text-navy hover:text-cyan transition">Process</a>
+                <a href="#projects" class="text-navy hover:text-cyan transition">Projects</a>
+                <a href="#faq" class="text-navy hover:text-cyan transition">FAQ</a>
+                <a href="#contact" class="px-6 py-2.5 bg-navy text-white rounded-full hover:bg-cyan transition transform hover:scale-105 shadow-lg flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-check"></i> Free Inspection
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button class="text-navy text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+        <!-- Liquid/Blob Background -->
+        <div class="bg-liquid">
+            <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-cyan/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-navy/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-cyan/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="reveal">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-cyan/10 text-cyan font-semibold text-sm mb-6 border border-cyan/20">
+                        <i class="fa-solid fa-shield-halved mr-2"></i> Modern Solutions. Lasting Protection.
+                    </div>
+                    <h1 class="text-5xl lg:text-6xl font-heading font-extrabold text-navy leading-tight mb-6">
+                        Stop Leaks Before They <span class="text-cyan relative inline-block">Cost You<svg class="absolute w-full h-3 -bottom-1 left-0 text-cyan/30" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="transparent"/></svg></span> a Fortune.
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed font-sans max-w-lg">
+                        From stubborn roof leaks to full-scale renovations and industrial flooring, <strong>BuildPro26</strong> delivers permanent solutions using advanced chemical systems and a team of seasoned engineers. Serving residential, commercial, and industrial clients across Pakistan — on time, on budget, with a satisfaction guarantee.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="px-8 py-4 bg-navy text-white text-center font-semibold rounded-full hover:bg-cyan transition-all transform hover:-translate-y-1 shadow-xl hover:shadow-cyan/30 flex justify-center items-center gap-2">
+                            Get a Free Consultation <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#services" class="px-8 py-4 bg-white text-navy text-center border-2 border-navy/20 font-semibold rounded-full hover:border-cyan hover:text-cyan transition-all flex justify-center items-center gap-2 group">
+                            View Our Services <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="mt-10 flex flex-wrap gap-6 text-sm font-medium text-gray-500">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-cyan"></i> 500+ Projects Completed</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-cyan"></i> 5+ Years Experience</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-cyan"></i> 24/7 Free Consultation</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-cyan"></i> 100% Satisfaction</div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative reveal h-[500px] parallax-wrapper rounded-[2rem] overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Construction and Waterproofing Engineering" class="parallax-img hero-img">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-navy/40 to-transparent"></div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur p-4 rounded-xl shadow-xl flex items-center gap-4 animate-pulse-slow">
+                        <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-droplet-slash"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Permanent Fixes</p>
+                            <p class="text-navy font-bold">Zero Leakage Guaranteed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 bg-offwhite relative border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+                <div class="reveal relative">
+                    <!-- Images Composition -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Engineers reviewing plans" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-navy/20"></div>
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 bg-white p-4 rounded-2xl shadow-xl hidden md:block w-64 border-l-4 border-cyan">
+                        <p class="font-bold text-navy mb-1 text-lg">Mr. Muhammad Kashif Raza</p>
+                        <p class="text-sm text-gray-500">Proprietor & Lead Consultant</p>
+                    </div>
+                </div>
+                
+                <div class="reveal">
+                    <h2 class="text-sm font-bold tracking-widest text-cyan uppercase mb-2">About BuildPro26</h2>
+                    <h3 class="text-4xl font-heading font-bold text-navy mb-6">Built to Last. Sealed to Protect.</h3>
+                    
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        At <strong>BuildPro26</strong>, we believe every building deserves to stand strong, leak-free, and efficient — for decades. That conviction is what drives us every single day.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        We are a full-service waterproofing and construction solutions company headquartered in Karachi, with a growing presence across Pakistan. Led by Proprietor Mr. Muhammad Kashif Raza, we have built a reputation as one of the most reliable names in the industry — trusted by homeowners, corporate clients, industrial giants, and government institutions alike.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        What sets BuildPro26 apart is our people. Our team comprises qualified engineers, certified technicians, and experienced project managers who bring deep knowledge of Pakistan's unique construction challenges — from the intense heat of Karachi summers to the moisture-heavy monsoon seasons. We don't just apply surface solutions — we diagnose the root cause and deliver permanent fixes.
+                    </p>
+                    
+                    <a href="#team" class="inline-flex items-center gap-2 text-navy font-bold hover:text-cyan transition border-b-2 border-cyan pb-1">
+                        Meet Our Team <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mission, Vision, Values Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mt-12 reveal">
+                <!-- Mission -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-navy hover-card">
+                    <div class="w-12 h-12 bg-navy/5 rounded-full flex items-center justify-center text-cyan text-xl mb-4">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy mb-3">Our Mission</h4>
+                    <p class="text-sm text-gray-600">To provide every client with permanent, high-quality waterproofing and construction solutions that protect their investment — delivered on time with professionalism and zero compromise on quality.</p>
+                </div>
+                <!-- Vision -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-cyan hover-card">
+                    <div class="w-12 h-12 bg-cyan/10 rounded-full flex items-center justify-center text-cyan text-xl mb-4">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy mb-3">Our Vision</h4>
+                    <p class="text-sm text-gray-600">To become Pakistan's most trusted name in building protection and construction — a one-stop platform connecting clients with verified contractors and innovative building solutions.</p>
+                </div>
+                <!-- Values -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-navy hover-card">
+                    <div class="w-12 h-12 bg-navy/5 rounded-full flex items-center justify-center text-cyan text-xl mb-4">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy mb-3">Core Values</h4>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li><strong>Quality First</strong> — Permanent solutions only.</li>
+                        <li><strong>Client Trust</strong> — Transparent pricing.</li>
+                        <li><strong>Innovation</strong> — Advanced chemical systems.</li>
+                        <li><strong>Accountability</strong> — We own every project.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-sm font-bold tracking-widest text-cyan uppercase mb-2">Our Expertise</h2>
+                <h3 class="text-4xl font-heading font-bold text-navy mb-4">Complete Building Protection</h3>
+                <p class="text-gray-600">From foundation to roof, we deliver a full spectrum of 12 specialized services designed to restore, protect, and enhance your property.</p>
+            </div>
+
+            <!-- Swiper Carousel for Services -->
+            <div class="swiper services-swiper pb-16 reveal">
+                <div class="swiper-wrapper">
+                    <!-- Service 1 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1628744448840-55bdb2497bd4?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Roof Waterproofing">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-house-crack"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Roof Waterproofing</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Stop persistent roof leaks with advanced membrane & liquid chemical systems. Permanent protection against heavy rains.</p>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Heatproofing">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-regular fa-sun"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Heatproofing</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">High-SRI coatings that reflect UV rays, reducing indoor temperatures by up to 10°C and cutting cooling costs.</p>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Bathroom Seepage">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-bath"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Bathroom Seepage</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Non-invasive injection treatments to stop wet ceilings and wall dampness. No expensive tile breaking required.</p>
+                        </div>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1520606093867-27b99c855aab?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Tank Leakage">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-water"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Tank Leakage Solutions</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Food-grade epoxy and cementitious coatings to permanently seal underground and overhead water tanks.</p>
+                        </div>
+                    </div>
+                    <!-- Service 5 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Basement Waterproofing">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-swimming-pool"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Basement & Pool Waterproofing</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Negative side pressure treatments and crystalline waterproofing to keep basements and pools completely dry.</p>
+                        </div>
+                    </div>
+                    <!-- Service 6 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356fce?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Bitumen Membrane">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Bitumen Membrane</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Torch-applied heavy-duty bituminous membranes providing rugged protection for commercial and industrial flat roofs.</p>
+                        </div>
+                    </div>
+                    <!-- Service 7 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Construction">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-helmet-safety"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Construction & Renovation</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Turnkey building, complete remodeling, and structural upgrades managed by professional civil engineers.</p>
+                        </div>
+                    </div>
+                    <!-- Service 8 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Interior Design">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-paint-roller"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Interior Design & Paint</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">High-quality painting services and interior finishing to beautify your space after sealing leaks and repairing walls.</p>
+                        </div>
+                    </div>
+                    <!-- Service 9 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Epoxy Flooring">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Epoxy & PU Flooring</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Industrial strength floors. Seamless coatings resistant to heavy traffic, chemicals, and impact. Fast installation.</p>
+                        </div>
+                    </div>
+                    <!-- Service 10 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1518214598173-157ee176b110?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Concrete Repair">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-trowel-bricks"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Concrete Repair & Crack Injection</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Restore structural integrity with PU injection for instant leak sealing and Epoxy injection for structural bonding.</p>
+                        </div>
+                    </div>
+                    <!-- Service 11 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Expansion Joint Treatment">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Expansion Joint Waterproofing</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Protect vulnerable slab junctions with high-movement, UV-resistant Polyurethane and Polysulfide sealants.</p>
+                        </div>
+                    </div>
+                    <!-- Service 12 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-offwhite rounded-2xl p-8 h-full hover-card shadow-md flex flex-col border-t-2 border-transparent hover:border-cyan">
+                            <img src="https://images.unsplash.com/photo-1588523315715-cd44e8ec6f24?auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover rounded-xl mb-6" alt="Rising Damp Treatment">
+                            <div class="w-14 h-14 bg-white text-cyan rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-arrow-up-from-water-pump"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy mb-3">Rising Damp & DPC Treatment</h4>
+                            <p class="text-gray-600 mb-4 flex-grow text-sm">Advanced chemical DPC injection creates a permanent, invisible barrier against ground moisture climbing walls.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination mt-10"></div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <p class="text-sm text-gray-500 mb-4">Swipe to explore all 12 specialized services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Process Section -->
+    <section id="process" class="py-24 bg-offwhite relative">
+        <!-- Blueprint Grid Background -->
+        <div class="absolute inset-0 z-0" style="background-image: linear-gradient(#0A2540 1px, transparent 1px), linear-gradient(90deg, #0A2540 1px, transparent 1px); background-size: 40px 40px; opacity: 0.03;"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl font-heading font-bold text-navy mb-4">How We Work</h2>
+                <p class="text-xl text-cyan font-medium">Simple, Transparent, Professional.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform md:-translate-x-1/2"></div>
+                <div id="timeline-progress" class="absolute left-4 md:left-1/2 top-0 w-1 bg-cyan transform md:-translate-x-1/2" style="height: 0%;"></div>
+
+                <!-- Steps -->
+                <div class="space-y-16">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:justify-between w-full process-step">
+                        <div class="hidden md:block md:w-5/12"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-white border-4 border-cyan rounded-full transform -translate-x-1/2 z-10 flex items-center justify-center">
+                            <div class="w-2 h-2 bg-navy rounded-full"></div>
+                        </div>
+                        <div class="ml-12 md:ml-0 md:w-5/12 bg-white p-6 rounded-2xl shadow-md border-l-4 border-navy hover:shadow-xl transition hover-card">
+                            <h4 class="text-xl font-bold text-navy mb-2">Step 1: Free Inspection & Diagnosis</h4>
+                            <p class="text-gray-600 text-sm">Call or WhatsApp us. We schedule a site visit within 24-48 hours. Our technical expert inspects the problem area, identifies the root cause (not just the symptom), and documents findings with photos.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:justify-between w-full process-step md:flex-row-reverse">
+                        <div class="hidden md:block md:w-5/12"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-white border-4 border-cyan rounded-full transform -translate-x-1/2 z-10 flex items-center justify-center">
+                            <div class="w-2 h-2 bg-navy rounded-full"></div>
+                        </div>
+                        <div class="ml-12 md:ml-0 md:w-5/12 bg-white p-6 rounded-2xl shadow-md border-r-4 border-navy hover:shadow-xl transition hover-card md:text-right">
+                            <h4 class="text-xl font-bold text-navy mb-2">Step 2: Customized Solution & Quotation</h4>
+                            <p class="text-gray-600 text-sm">You receive a detailed, written proposal outlining the scope of work, the specific chemical system we will use, the timeline, and a fixed, transparent price. No hidden fees.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:justify-between w-full process-step">
+                        <div class="hidden md:block md:w-5/12"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-white border-4 border-cyan rounded-full transform -translate-x-1/2 z-10 flex items-center justify-center">
+                            <div class="w-2 h-2 bg-navy rounded-full"></div>
+                        </div>
+                        <div class="ml-12 md:ml-0 md:w-5/12 bg-white p-6 rounded-2xl shadow-md border-l-4 border-navy hover:shadow-xl transition hover-card">
+                            <h4 class="text-xl font-bold text-navy mb-2">Step 3: Professional Execution</h4>
+                            <p class="text-gray-600 text-sm">Our trained, uniformed team arrives on time. We protect surrounding areas, follow strict safety protocols, and execute the work with minimal disruption to your home or business.</p>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:justify-between w-full process-step md:flex-row-reverse">
+                        <div class="hidden md:block md:w-5/12"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-white border-4 border-cyan rounded-full transform -translate-x-1/2 z-10 flex items-center justify-center">
+                            <div class="w-2 h-2 bg-navy rounded-full"></div>
+                        </div>
+                        <div class="ml-12 md:ml-0 md:w-5/12 bg-white p-6 rounded-2xl shadow-md border-r-4 border-navy hover:shadow-xl transition hover-card md:text-right">
+                            <h4 class="text-xl font-bold text-navy mb-2">Step 4: Quality Assurance & Handover</h4>
+                            <p class="text-gray-600 text-sm">After completion, we conduct a water test (where applicable) and walk you through the work. We clean the site thoroughly and provide warranty documentation.</p>
+                        </div>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:justify-between w-full process-step">
+                        <div class="hidden md:block md:w-5/12"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-white border-4 border-cyan rounded-full transform -translate-x-1/2 z-10 flex items-center justify-center">
+                            <div class="w-2 h-2 bg-navy rounded-full"></div>
+                        </div>
+                        <div class="ml-12 md:ml-0 md:w-5/12 bg-navy text-white p-6 rounded-2xl shadow-lg border-l-4 border-cyan hover:shadow-xl transition transform hover:scale-105">
+                            <h4 class="text-xl font-bold text-cyan mb-2">Step 5: Post-Project Follow-Up</h4>
+                            <p class="text-gray-300 text-sm">We check in after the next rain or after a month to ensure you are 100% satisfied. Our relationship doesn't end at handover.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats & Social Proof -->
+    <section class="bg-navy py-16 relative overflow-hidden">
+        <!-- Background animated elements -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="wavePattern" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M0 10 Q 25 20 50 10 T 100 10" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                    </pattern>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#wavePattern)"/>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Stats Counter -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16 border-b border-white/20 pb-16" id="stats-container">
+                <div>
+                    <div class="text-4xl md:text-6xl font-bold text-white mb-2 flex justify-center"><span class="odometer" data-target="750">0</span><span class="text-cyan">+</span></div>
+                    <p class="text-cyan font-medium uppercase tracking-widest text-sm">Projects Completed</p>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-6xl font-bold text-white mb-2 flex justify-center"><span class="odometer" data-target="7">0</span><span class="text-cyan">+</span></div>
+                    <p class="text-cyan font-medium uppercase tracking-widest text-sm">Years Experience</p>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-6xl font-bold text-white mb-2 flex justify-center"><span class="odometer" data-target="300">0</span><span class="text-cyan">+</span></div>
+                    <p class="text-cyan font-medium uppercase tracking-widest text-sm">Happy Clients</p>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-6xl font-bold text-white mb-2 flex justify-center"><span class="odometer" data-target="40">0</span><span class="text-cyan">%</span></div>
+                    <p class="text-cyan font-medium uppercase tracking-widest text-sm">Electricity Savings</p>
+                </div>
+            </div>
+
+            <!-- Client Logos Marquee -->
+            <div class="text-center mb-8">
+                <h3 class="text-white text-lg font-medium">Trusted by Leading Brands Across Pakistan</h3>
+            </div>
+            
+            <!-- Infinite Scroll Marquee -->
+            <div class="marquee-container bg-white/5 py-6 rounded-2xl backdrop-blur-sm">
+                <!-- Track 1 -->
+                <div class="marquee-track space-x-12 px-6 items-center text-white/80 font-heading">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Bahria_University_Logo.svg/1200px-Bahria_University_Logo.svg.png" class="h-12 w-auto client-logo object-contain" alt="Bahria University">
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Gul Ahmed</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Alkaram</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Toyota</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Pearl Continental</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Soorty</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Mezan Oil</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Saylani</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">LG Electronics</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Shan Foods</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Honda</h3>
+                    
+                    <!-- Repeat for seamless loop -->
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Bahria_University_Logo.svg/1200px-Bahria_University_Logo.svg.png" class="h-12 w-auto client-logo object-contain" alt="Bahria University">
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Gul Ahmed</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Alkaram</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Toyota</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Pearl Continental</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Soorty</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Mezan Oil</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Saylani</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">LG Electronics</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Shan Foods</h3>
+                    <h3 class="text-xl font-bold client-logo uppercase tracking-widest">Honda</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet The Team Section -->
+    <section id="team" class="py-24 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-sm font-bold tracking-widest text-cyan uppercase mb-2">Our People</h2>
+                <h3 class="text-4xl font-heading font-bold text-navy mb-4">The Experts Behind Your Protection.</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">A specialized team of engineers, supervisors, and applicators committed to the BuildPro26 standard of permanent solutions.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+                <!-- Team Member 1 -->
+                <div class="bg-offwhite rounded-2xl overflow-hidden hover-card shadow-sm border border-gray-100">
+                    <div class="h-48 bg-navy flex items-center justify-center text-5xl text-white/10">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-navy mb-1">Mr. M. Kashif Raza</h4>
+                        <p class="text-sm text-cyan font-medium mb-3">Proprietor & Lead Consultant</p>
+                        <p class="text-xs text-gray-500">Personally oversees every project consultation, ensuring permanent fixes are implemented across all sites.</p>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="bg-offwhite rounded-2xl overflow-hidden hover-card shadow-sm border border-gray-100">
+                    <div class="h-48 bg-navy flex items-center justify-center text-5xl text-white/10">
+                        <i class="fa-solid fa-hard-hat"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-navy mb-1">Senior Site Engineer</h4>
+                        <p class="text-sm text-cyan font-medium mb-3">Civil & Structural Expert</p>
+                        <p class="text-xs text-gray-500">A graduate engineer leading complex industrial and commercial waterproofing and concrete repair projects.</p>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="bg-offwhite rounded-2xl overflow-hidden hover-card shadow-sm border border-gray-100">
+                    <div class="h-48 bg-navy flex items-center justify-center text-5xl text-white/10">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-navy mb-1">Project Supervisor</h4>
+                        <p class="text-sm text-cyan font-medium mb-3">On-Site Management</p>
+                        <p class="text-xs text-gray-500">With a decade of on-ground experience, coordinating day-to-day execution and strict safety compliance.</p>
+                    </div>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="bg-offwhite rounded-2xl overflow-hidden hover-card shadow-sm border border-gray-100">
+                    <div class="h-48 bg-navy flex items-center justify-center text-5xl text-white/10">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-navy mb-1">Application Technicians</h4>
+                        <p class="text-sm text-cyan font-medium mb-3">Certified Installers</p>
+                        <p class="text-xs text-gray-500">Highly trained in advanced chemical injection, torch-applied membranes, and specialized epoxy systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects / Showcase Section -->
+    <section id="projects" class="py-24 bg-offwhite">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-heading font-bold text-navy mb-4">Real Results for Real Clients</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our portfolio of completed projects. We deliver peace of mind through permanent, high-quality waterproofing and construction solutions.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <!-- Before/After Interactive Slider -->
+                <div>
+                    <h3 class="text-2xl font-bold text-navy mb-4">Concrete Repair & Crack Injection</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Drag the slider to see the difference. We restore original structural integrity using high-pressure epoxy injection and advanced polymer-modified mortars.</p>
+                    
+                    <div class="slider-container shadow-2xl">
+                        <!-- After Image -->
+                        <img src="https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&w=800&q=80" alt="Clean Repaired Concrete Wall" class="slider-img">
+                        <!-- Before Image -->
+                        <img src="https://images.unsplash.com/photo-1518214598173-157ee176b110?auto=format&fit=crop&w=800&q=80" alt="Cracked Concrete Wall" class="slider-img slider-img-before" id="slider-before">
+                        <!-- Range Input -->
+                        <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-ew-resize" id="image-slider">
+                        <!-- Slider Line & Handle -->
+                        <div class="slider-handle z-10" id="slider-line"></div>
+                        
+                        <div class="absolute top-4 left-4 bg-navy/80 backdrop-blur text-white px-3 py-1 rounded text-xs font-bold z-10">BEFORE</div>
+                        <div class="absolute top-4 right-4 bg-cyan/80 backdrop-blur text-navy px-3 py-1 rounded text-xs font-bold z-10">AFTER</div>
+                    </div>
+                </div>
+
+                <!-- Case Studies List -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-cyan hover-card">
+                        <h4 class="font-bold text-navy text-lg mb-2">Industrial Roof Crisis Averted</h4>
+                        <p class="text-sm text-gray-500 mb-2"><i class="fa-solid fa-building text-cyan w-5"></i> Large Textile Mill, Karachi</p>
+                        <p class="text-sm text-gray-600"><strong>Result:</strong> Zero leakage recorded in the last 18 months. Safe working environment restored with two-layer Bitumen Membrane.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-cyan hover-card">
+                        <h4 class="font-bold text-navy text-lg mb-2">Energy Savings in Warehouse</h4>
+                        <p class="text-sm text-gray-500 mb-2"><i class="fa-solid fa-warehouse text-cyan w-5"></i> Logistics Company, Lahore</p>
+                        <p class="text-sm text-gray-600"><strong>Result:</strong> Indoor temperature reduced by 10°C. Electricity consumption dropped 38% after High-SRI Heatproofing application.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-cyan hover-card">
+                        <h4 class="font-bold text-navy text-lg mb-2">Non-Invasive Bathroom Repair</h4>
+                        <p class="text-sm text-gray-500 mb-2"><i class="fa-solid fa-city text-cyan w-5"></i> Residential Tower, DHA</p>
+                        <p class="text-sm text-gray-600"><strong>Result:</strong> Leakage stopped within 24 hours via Super Mega Leakage Control Chemical injection. No tiles broken. Saved 70% cost.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Carousel of Project Pictures -->
+            <div class="reveal mt-16 relative">
+                <h3 class="text-2xl font-bold text-center text-navy mb-8">Our Site Gallery</h3>
+                <div class="swiper projects-swiper rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide relative group">
+                            <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80" class="w-full h-[400px] object-cover" alt="Roof Treatment">
+                            <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-bold text-xl border-2 border-cyan px-6 py-2 rounded-full">Roof Waterproofing</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative group">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356fce?auto=format&fit=crop&w=1200&q=80" class="w-full h-[400px] object-cover" alt="Epoxy Floor Application">
+                            <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-bold text-xl border-2 border-cyan px-6 py-2 rounded-full">Industrial Epoxy Flooring</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative group">
+                            <img src="https://images.unsplash.com/photo-1588523315715-cd44e8ec6f24?auto=format&fit=crop&w=1200&q=80" class="w-full h-[400px] object-cover" alt="Chemical Treatment">
+                            <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-bold text-xl border-2 border-cyan px-6 py-2 rounded-full">Chemical PU Injection</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide relative group">
+                            <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=1200&q=80" class="w-full h-[400px] object-cover" alt="Heatproofing Coating">
+                            <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-bold text-xl border-2 border-cyan px-6 py-2 rounded-full">Heatproofing Coating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation arrows -->
+                    <div class="swiper-button-next !text-cyan drop-shadow-md bg-white/20 p-6 rounded-full backdrop-blur-sm hover:bg-cyan hover:!text-white transition"></div>
+                    <div class="swiper-button-prev !text-cyan drop-shadow-md bg-white/20 p-6 rounded-full backdrop-blur-sm hover:bg-cyan hover:!text-white transition"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-navy relative text-white">
+        <!-- Abstract wave shape -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="absolute w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,50 C20,80 50,20 100,50 L100,100 L0,100 Z" fill="#00D2D3"></path>
+            </svg>
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-heading font-bold mb-4">What Our Clients Say</h2>
+                <div class="w-20 h-1 bg-cyan mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Testimonials Swiper -->
+            <div class="swiper testimonials-swiper pb-16 reveal">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl relative">
+                            <i class="fa-solid fa-quote-left text-4xl text-cyan/30 absolute top-6 left-6"></i>
+                            <div class="relative z-10">
+                                <p class="text-gray-300 italic mb-6">"We needed a durable floor for our new food processing unit that could withstand constant washing and heavy carts. BuildPro26 installed an epoxy flake floor that looks fantastic and is incredibly easy to clean. The team was efficient and professional. We will definitely use them for our next expansion phase."</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-cyan text-navy rounded-full flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-user"></i></div>
+                                    <div>
+                                        <p class="font-bold text-white">Operations Manager</p>
+                                        <p class="text-sm text-cyan">Food & Beverage Company, Karachi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl relative">
+                            <i class="fa-solid fa-quote-left text-4xl text-cyan/30 absolute top-6 left-6"></i>
+                            <div class="relative z-10">
+                                <p class="text-gray-300 italic mb-6">"The roof leakage at our industrial facility was severely disrupting production. BuildPro26 came in, assessed the situation accurately, and applied a bitumen membrane system that permanently solved our issues. Highly recommend their professional approach."</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-cyan text-navy rounded-full flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-industry"></i></div>
+                                    <div>
+                                        <p class="font-bold text-white">Facility Director</p>
+                                        <p class="text-sm text-cyan">Textile Mill, SITE Area</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl relative">
+                            <i class="fa-solid fa-quote-left text-4xl text-cyan/30 absolute top-6 left-6"></i>
+                            <div class="relative z-10">
+                                <p class="text-gray-300 italic mb-6">"I was dreading breaking all the tiles in my master bathroom to fix the seepage problem. BuildPro26 used their injection technology and stopped the leak in one day without any demolition. It was a completely hassle-free experience!"</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-cyan text-navy rounded-full flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-house"></i></div>
+                                    <div>
+                                        <p class="font-bold text-white">Residential Client</p>
+                                        <p class="text-sm text-cyan">DHA Phase 6, Karachi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-heading font-bold text-navy mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600">Got questions? We have answers to help you make informed decisions about your property.</p>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-offwhite hover:bg-gray-100 transition flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-navy">What is the difference between Epoxy and PU Flooring?</span>
+                        <i class="fa-solid fa-plus text-cyan transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6 text-gray-600 text-sm">
+                        <div class="pb-4 pt-2">
+                            Epoxy is extremely hard and durable, making it ideal for heavy impact and chemical resistance in factories. Polyurethane (PU) is more flexible and UV-stable, making it better for areas with temperature fluctuations or exposure to sunlight, as well as car parks. We recommend the best system based on your specific site conditions.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-offwhite hover:bg-gray-100 transition flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-navy">How do you fix cracks in concrete columns?</span>
+                        <i class="fa-solid fa-plus text-cyan transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6 text-gray-600 text-sm">
+                        <div class="pb-4 pt-2">
+                            We use low-viscosity epoxy injection. The crack is sealed on the surface, and injection ports are installed. We then inject liquid epoxy under pressure. This fills the full depth of the crack and bonds the concrete together, restoring the structural strength to its original state.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-offwhite hover:bg-gray-100 transition flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-navy">What is rising damp and can it be fixed permanently?</span>
+                        <i class="fa-solid fa-plus text-cyan transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6 text-gray-600 text-sm">
+                        <div class="pb-4 pt-2">
+                            Rising damp is ground moisture absorbed by porous walls like a sponge, causing paint peeling and salt deposits. Yes, it can be fixed permanently. We drill holes along the mortar bed and inject a high-strength silicone cream that diffuses to create a permanent waterproof barrier (Chemical DPC). This is a 20+ year solution.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-offwhite hover:bg-gray-100 transition flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-navy">Is there a guarantee on your waterproofing services?</span>
+                        <i class="fa-solid fa-plus text-cyan transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6 text-gray-600 text-sm">
+                        <div class="pb-4 pt-2">
+                            Yes! Because we use advanced chemical systems and follow strict application procedures, we provide formal warranties on our waterproofing and structural repair services. The warranty duration depends on the specific system installed, which is detailed in your initial quotation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-navy relative pt-32 pb-10">
+        <!-- SVG Wave Top -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 transform rotate-180">
+            <svg class="relative block w-full h-24 text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+                <!-- Contact Info -->
+                <div class="text-white reveal">
+                    <h2 class="text-4xl font-heading font-bold mb-4">Ready to Solve Your Problem? <br><span class="text-cyan">Let's Talk — For Free.</span></h2>
+                    <p class="text-gray-300 mb-8 max-w-md">Call us, WhatsApp us, or fill in the form. A BuildPro26 expert will reach out within 2 hours during business hours. We visit your site, assess your problem, and give you a no-cost written quotation.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-cyan/20 flex items-center justify-center text-cyan shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-400 uppercase">Headquarters</h4>
+                                <p>D.T-39, Block 12, Gulberg FB Area,<br>Karachi, Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-cyan/20 flex items-center justify-center text-cyan shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-400 uppercase">Contact Numbers</h4>
+                                <p>+92 333 1231304 <span class="text-xs text-cyan bg-cyan/10 px-2 py-0.5 rounded ml-2">WhatsApp</span></p>
+                                <p>+92 302 1582808</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-cyan/20 flex items-center justify-center text-cyan shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-400 uppercase">Email Address</h4>
+                                <p>info@buildpro26.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-cyan/20 flex items-center justify-center text-cyan shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-400 uppercase">Business Hours</h4>
+                                <p>Mon - Sat: 9:00 AM – 7:00 PM</p>
+                                <p class="text-cyan font-semibold text-sm">Emergency: 24/7 Response</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 flex flex-wrap gap-4">
+                        <a href="https://wa.me/923331231304" target="_blank" class="px-6 py-3 bg-[#25D366] hover:bg-[#1da851] text-white rounded-full font-bold transition flex items-center gap-2 shadow-lg">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
+                        </a>
+                        <a href="tel:+923331231304" class="px-6 py-3 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white rounded-full font-bold transition flex items-center gap-2">
+                            <i class="fa-solid fa-phone-volume"></i> Call Now — We Respond Fast
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Overlapping Contact Form -->
+                <div class="bg-white rounded-3xl p-8 shadow-2xl reveal">
+                    <h3 class="text-2xl font-bold text-navy mb-6">Request My Free Site Assessment</h3>
+                    <form action="#" method="POST" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan focus:border-cyan outline-none transition" placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan focus:border-cyan outline-none transition" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan focus:border-cyan outline-none transition" placeholder="03XX XXXXXXX">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Service Needed</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan focus:border-cyan outline-none transition bg-white text-gray-700">
+                                <option>Roof Waterproofing</option>
+                                <option>Heatproofing</option>
+                                <option>Epoxy Flooring</option>
+                                <option>Concrete Repair</option>
+                                <option>Bathroom Seepage</option>
+                                <option>Other Construction Service</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan focus:border-cyan outline-none transition" placeholder="Describe your issue..."></textarea>
+                        </div>
+                        <button type="button" class="w-full bg-navy hover:bg-cyan text-white font-bold py-4 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-2">
+                            Send My Enquiry <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/10 pt-8 mt-12 text-center md:text-left grid md:grid-cols-2 gap-4">
+                <div>
+                    <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-1xdhhyy1spsm6k7h22x60tpe/user-c31a7x7p2d98y1u861m5h93i/img-k582bO1S01lD2uE6W3V7r5N0.png?st=2024-03-24T08%3A01%3A25Z&se=2024-03-24T10%3A01%3A25Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-03-23T20%3A20%3A46Z&ske=2024-03-24T20%3A20%3A46Z&sks=b&skv=2021-08-06&sig=R7cM0r1tGzZ%2BZf%2Bjz0q1s8P6bO5UvK%2B1K%2BqB4OQZ0M4%3D" alt="BuildPro26 Logo" class="h-10 mb-4 mx-auto md:mx-0 filter brightness-0 invert">
+                    <p class="text-gray-400 text-sm">BuildPro26 — Modern Solutions. Lasting Protection.<br>Sole Proprietor: Mr. Muhammad Kashif Raza</p>
+                </div>
+                <div class="md:text-right text-gray-400 text-sm flex flex-col justify-end">
+                    <p class="mb-2">Waterproofing | Heatproofing | Bathroom Seepage | Basement | Bitumen | Construction | Renovation | Interior Design | Paint Work | Epoxy Flooring | Concrete Repair</p>
+                    <p>&copy; 2026 BuildPro26. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Spotlight Mouse Tracking
+            const spotlight = document.getElementById('cursor-spotlight');
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+                spotlight.style.transform = `translate(${x - 150}px, ${y - 150}px)`;
+            });
+
+            // Navbar Glass Effect on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 50) {
+                    navbar.classList.add('shadow-md');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                }
+            });
+
+            // Initialize Swipers
+            const servicesSwiper = new Swiper('.services-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                    1280: { slidesPerView: 4 }
+                },
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                }
+            });
+
+            const projectsSwiper = new Swiper('.projects-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                }
+            });
+
+            const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 }
+                },
+                autoplay: {
+                    delay: 6000,
+                }
+            });
+
+            // FAQ Accordion Logic
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('i');
+                    
+                    // Close all others
+                    document.querySelectorAll('.faq-content').forEach(otherContent => {
+                        if (otherContent !== content) {
+                            otherContent.classList.remove('open');
+                            otherContent.previousElementSibling.querySelector('i').classList.remove('rotate-45', 'text-red-500');
+                        }
+                    });
+
+                    // Toggle current
+                    content.classList.toggle('open');
+                    icon.classList.toggle('rotate-45');
+                    icon.classList.toggle('text-red-500');
+                });
+            });
+
+            // GSAP Scroll Animations (Fade Ups)
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach((el) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                });
+            });
+
+            // Parallax Hero Image
+            gsap.to(".hero-img", {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top", 
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Process Timeline Draw Animation
+            gsap.to("#timeline-progress", {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#process",
+                    start: "top center",
+                    end: "bottom center",
+                    scrub: 0.5
+                }
+            });
+
+            // Odometer (Stats Counter)
+            const odometers = document.querySelectorAll('.odometer');
+            let hasCounted = false;
+
+            ScrollTrigger.create({
+                trigger: "#stats-container",
+                start: "top 80%",
+                onEnter: () => {
+                    if (!hasCounted) {
+                        odometers.forEach(odo => {
+                            const target = parseInt(odo.getAttribute('data-target'));
+                            gsap.to(odo, {
+                                innerHTML: target,
+                                duration: 2.5,
+                                snap: { innerHTML: 1 },
+                                ease: "power2.out"
+                            });
+                        });
+                        hasCounted = true;
+                    }
+                }
+            });
+
+            // Before/After Slider Interaction
+            const sliderInput = document.getElementById('image-slider');
+            const sliderBefore = document.getElementById('slider-before');
+            const sliderLine = document.getElementById('slider-line');
+
+            sliderInput.addEventListener('input', (e) => {
+                const sliderValue = e.target.value;
+                sliderBefore.style.clipPath = `inset(0 ${100 - sliderValue}% 0 0)`;
+                sliderLine.style.left = `${sliderValue}%`;
+            });
+        });
+    </script>
+</body>
+</html>
